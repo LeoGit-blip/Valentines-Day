@@ -4,6 +4,13 @@
 
 /* Tablet Devices (768px and up) */
 @media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-sm);
+        min-height: auto;
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+
     .loading-text {
         font-size: 2rem;
     }
@@ -50,7 +57,17 @@
 /* Mobile Devices (480px and up) */
 @media (max-width: 480px) {
     .container {
-        padding: var(--spacing-sm);
+        padding: 1rem;
+        min-height: auto;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        justify-content: flex-start;
+    }
+
+    .section {
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
     }
 
     .loading-text {
@@ -77,6 +94,11 @@
 
     .section-title {
         font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .reasons-grid {
+        margin-bottom: 1.5rem;
     }
 
     .reason-card {

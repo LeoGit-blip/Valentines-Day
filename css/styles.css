@@ -9,23 +9,23 @@
     --accent-lavender: #C5A3FF;
     --accent-mint: #A8E6CF;
     --rose-gold: #B76E79;
-    
+
     /* Gradients */
     --gradient-romantic: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-sunset: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-candy: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    
+
     /* Typography */
     --font-heading: 'Pacifico', cursive;
     --font-body: 'Poppins', sans-serif;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
-    
+
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -45,6 +45,8 @@ body {
     background: var(--gradient-romantic);
     color: #fff;
     overflow-x: hidden;
+    overflow-y: auto;
+    /* Allow vertical scrolling */
     min-height: 100vh;
 }
 
@@ -58,6 +60,9 @@ body {
     justify-content: center;
     min-height: 100vh;
     text-align: center;
+    overflow-y: auto;
+    /* Allow scrolling within container */
+    width: 100%;
 }
 
 /* ===================================
@@ -72,6 +77,9 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s ease;
+    overflow-y: auto;
+    /* Allow scrolling in sections */
+    overflow-x: hidden;
 }
 
 .section.active {
