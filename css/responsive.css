@@ -60,7 +60,8 @@
         padding: 1rem;
         min-height: auto;
         padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: 3rem;
+        /* Increased to prevent button cutoff */
         justify-content: flex-start;
     }
 
@@ -68,6 +69,8 @@
         overflow-y: scroll !important;
         -webkit-overflow-scrolling: touch;
         /* Smooth scrolling on iOS */
+        padding-bottom: 2rem;
+        /* Extra space at bottom */
     }
 
     .loading-text {
@@ -152,6 +155,8 @@
     .next-btn {
         font-size: 1.1rem;
         padding: 0.8rem 2rem;
+        margin-bottom: 2rem;
+        /* Ensure button is visible above browser UI */
     }
 }
 

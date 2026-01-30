@@ -142,6 +142,8 @@ function resetNoButtonPosition() {
         noBtn.style.left = '';
         noBtn.style.top = '';
         noBtn.style.transform = '';
+        noBtn.style.width = ''; // Reset width
+        noBtn.style.height = ''; // Reset height
     }
 }
 
@@ -193,38 +195,48 @@ function setupNoBtnEvasion(noBtn) {
 
 // Move button away from cursor
 function moveButtonAway(button, mouseX, mouseY) {
-    const container = document.querySelector('#question .container');
-    const containerRect = container.getBoundingClientRect();
+    // Use viewport dimensions for full screen movement
+    const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
 
-    // Calculate new random position
-    const maxX = containerRect.width - button.offsetWidth - 40;
-    const maxY = containerRect.height - button.offsetHeight - 40;
+    // Store original button dimensions
+    const btnWidth = button.offsetWidth;
+    const btnHeight = button.offsetHeight;
 
-    // Generate random position, but away from mouse
+    // Calculate safe boundaries (with padding from edges)
+    const padding = 20;
+    const maxX = viewport.width - btnWidth - padding;
+    const maxY = viewport.height - btnHeight - padding;
+
+    // Generate random position, but away from cursor
     let newX, newY;
     let attempts = 0;
 
     do {
-        newX = Math.random() * maxX;
-        newY = Math.random() * maxY;
+        newX = Math.random() * (maxX - padding) + padding;
+        newY = Math.random() * (maxY - padding) + padding;
         attempts++;
 
-        // Calculate distance from mouse to new position
+        // Calculate distance from cursor to new position
         const distanceFromMouse = Math.sqrt(
-            Math.pow(mouseX - (containerRect.left + newX), 2) +
-            Math.pow(mouseY - (containerRect.top + newY), 2)
+            Math.pow(mouseX - newX, 2) +
+            Math.pow(mouseY - newY, 2)
         );
 
-        // Accept position if it's far enough from mouse or we've tried too many times
+        // Accept position if it's far enough from cursor
         if (distanceFromMouse > 150 || attempts > 10) {
             break;
         }
     } while (attempts < 10);
 
-    // Apply the new position
-    button.style.position = 'absolute';
+    // Apply the new position with fixed positioning (viewport-based)
+    button.style.position = 'fixed';
     button.style.left = newX + 'px';
     button.style.top = newY + 'px';
+    button.style.width = btnWidth + 'px'; // Lock width to prevent size change
+    button.style.height = btnHeight + 'px'; // Lock height to prevent size change
     button.style.transition = 'all 0.3s ease';
 }
 
